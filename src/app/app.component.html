@@ -1,4 +1,4 @@
-
+<main class="">
 <nav class="nav-container">
   <div class="logo_container">
     <img src="assets/img/logo.png" />
@@ -6,59 +6,74 @@
   <div class="navlinks">
       <div class="has_submenu">
         <a href="#" class="nav_link">Home</a>
-        <div class="submenu">
+        <!-- <div class="submenu">
             <a href="#">Login</a>
             <a href="#">Help</a>  
-        </div>
+        </div> -->
       </div>
       <div class="has_submenu">
         <a href="#" class="nav_link">Support</a>
-      <div class="submenu">
+      <!-- <div class="submenu">
         <a href="#">Contact us</a>
         <a href="#">FAQ</a>  
-    </div></div>
+    </div> -->
+  </div>
 
     <div class="has_submenu">
       <a href="#" class="nav_link">About Us</a>
-      <div class="submenu">
+      <!-- <div class="submenu">
         <a href="#">About Johnson Controls</a>
         <a href="#">Our Business</a>  
         <a href="#">Brand Portal</a>  
-    </div></div>
+    </div> -->
+  </div>
   </div>
 </nav>
-<!-- <main>
-  <h1>Open Blue AI</h1>
-  <h3>The blueprint of the future</h3>
-</main>
-<div class="outer_wrapper" style="max-width: 600px;margin: 0 auto;">
-  <div class="field_box">
-    <label _ngcontent-vdm-c16 class="form-label">Review Sheet</label>
-    <input type="file" (change)="uploadFile($event)" accept="application/pdf" />
-  </div>
-  <div class="field_box">
-    <label _ngcontent-vdm-c16 class="form-label">BMS Point List</label>
-    <input type="file" (change)="uploadFile($event)" accept="application/pdf" />
-  </div>
-  <a class="btn_prime inform" asp-action="Submit">GENERATE</a>
-</div> -->
-
-<body>
 	<div class="container">
-		<div class="upload_boxes">
-      <div class="upload-box" onclick="document.getElementById('file-input1').click()">
-        <img src="../assets/img/upload-cloud.svg" alt="Upload Icon">
-        <p>Upload Review Sheet</p>
-        <!-- <p>or click to select files</p> -->
-        <input type="file" id="file-input1" class="file-input">
-      </div>
-      <div (drop)="fileHandler($event)" class="upload-box" onclick="document.getElementById('file-input2').click()">
-        <img src="../assets/img/upload-cloud.svg" alt="Upload Icon">
-        <p>Upload Yumitori</p>
-        <!-- <p>or click to select files</p> -->
-        <input type="file" id="file-input2" class="file-input">
-      </div>
+    <div class="outer_wrapper">
+      <div class="upload_boxes_container">
+        <h1 class="main_title">OpenBlue <span>Point Wizard Tool</span></h1>
+        <div class="upload_wrapper">
+          <div class="upload-box" (change)="uploadFile($event,'reviewSheet')" (drop)="drophandler($event,'reviewSheet')">
+            <div *ngIf="fileType != 'reviewSheet'" id="fileType" class="upload_container">
+              <img src="../assets/img/upload-cloud.svg" alt="Upload Icon">
+            </div>
+            <div class="icon_container" *ngIf="fileType == 'reviewSheet'">
+              <img src="../assets/img/excel.png" alt="Upload Icon">
+            </div>
+            <p *ngIf="!uploadedRs">Upload Review Sheet</p>
+            <div id="reviewSheet"></div>
+            <input accept="text/csv" type="file" id="file-input1" class="file-input">
+          </div>
+
+          <div class="upload-box" (change)="uploadFile($event,'yumitori')" (drop)="drophandler($event,'yumitori')">
+            <div *ngIf="fileType != 'yumitori'" id="fileType" class="upload_container">
+              <img src="../assets/img/upload-cloud.svg" alt="Upload Icon">
+            </div>
+            <div class="icon_container" *ngIf="fileType == 'yumitori'">
+              <img src="../assets/img/excel.png" alt="Upload Icon">
+            </div>
+            <p *ngIf="!uploadedYu">Upload Yumitori</p>
+            <div id="yumitori"></div>
+            <input accept="text/csv" type="file" id="file-input1" class="file-input">
+          </div>
+
+          <!-- <div (drop)="fileHandler($event)" class="upload-box">
+            <img src="../assets/img/upload-cloud.svg" alt="Upload Icon">
+            <p *ngIf="!uploadRsType">Upload Yumitori</p>
+            <div id="file_name"></div>
+            <input accept="text/csv" type="file" id="file-input2" class="file-input">
+          </div> -->
+          
+        </div>
+        <button type="submit" id="submit-btn">Download</button>
     </div>
-		<button type="submit" id="submit-btn">GENERATE</button>
+    <div class="lottie_container">
+      <ng-lottie [options]="options" (animationCreated)="animationCreated($event)"></ng-lottie>
+    </div>
+  </div>
 	</div>
-</body>
+  <div class="open_blue_logo_container">
+      <p>Open<span>Blue</span></p>
+  </div>
+</main>
