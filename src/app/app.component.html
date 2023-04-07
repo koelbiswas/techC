@@ -35,25 +35,25 @@
         <h1 class="main_title">OpenBlue <span>Point Wizard Tool</span></h1>
         <div class="upload_wrapper">
           <div class="upload-box" (change)="uploadFile($event,'reviewSheet')" (drop)="drophandler($event,'reviewSheet')">
-            <div *ngIf="fileType != 'reviewSheet'" id="fileType" class="upload_container">
+            <div *ngIf="!fileType.includes('reviewSheet')" id="fileType" class="upload_container">
               <img src="../assets/img/upload-cloud.svg" alt="Upload Icon">
             </div>
-            <div class="icon_container" *ngIf="fileType == 'reviewSheet'">
+            <div class="icon_container" *ngIf="fileType.includes('reviewSheet')">
               <img src="../assets/img/excel.png" alt="Upload Icon">
             </div>
-            <p *ngIf="!uploadedRs">Upload Review Sheet</p>
+            <p *ngIf="!fileType.includes('reviewSheet')">Upload Review Sheet</p>
             <div id="reviewSheet"></div>
             <input accept="text/csv" type="file" id="file-input1" class="file-input">
           </div>
 
           <div class="upload-box" (change)="uploadFile($event,'yumitori')" (drop)="drophandler($event,'yumitori')">
-            <div *ngIf="fileType != 'yumitori'" id="fileType" class="upload_container">
+            <div *ngIf="!fileType.includes('yumitori')" id="fileType" class="upload_container">
               <img src="../assets/img/upload-cloud.svg" alt="Upload Icon">
             </div>
-            <div class="icon_container" *ngIf="fileType == 'yumitori'">
+            <div class="icon_container" *ngIf="fileType.includes('yumitori')">
               <img src="../assets/img/excel.png" alt="Upload Icon">
             </div>
-            <p *ngIf="!uploadedYu">Upload Yumitori</p>
+            <p *ngIf="!fileType.includes('yumitori')">Upload Yumitori</p>
             <div id="yumitori"></div>
             <input accept="text/csv" type="file" id="file-input1" class="file-input">
           </div>

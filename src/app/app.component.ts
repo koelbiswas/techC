@@ -11,7 +11,8 @@ export class AppComponent {
   title = 'myform';
   uploadedRs = false;
   uploadedYu = false;
-  fileType = 'reviewSheet'  // reviewSheet , yumitori
+  fileType : String[] = []  // reviewSheet , yumitori
+
 
   options: AnimationOptions = {
     path: '/assets/133744-3d-hologram.json'
@@ -35,9 +36,9 @@ export class AppComponent {
       console.log("Current Class",fileEle);
       
       
-      if(fileEle && currentTarget.files[0].type == "text/csv") {
+      if((fileEle && currentTarget.files[0].type == "text/csv") || (fileEle && event.dataTransfer.files[0].type=="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")) {
         fileEle.innerHTML = currentTarget.files[0].name;
-        this.fileType = fileTypeName;
+        this.fileType.push(fileTypeName);
       }      
     }
   }
@@ -48,14 +49,15 @@ export class AppComponent {
 
     console.log("File Type Name",fileTypeName);
     
-
+    console.log(event.dataTransfer.files[0]);
+    
     if(event.dataTransfer.files.length) {
       const fileEle = document.getElementById(fileTypeName);
       console.log("Current Class",fileEle);
 
       
-      if(fileEle && event.dataTransfer.files[0].type == "text/csv") {
-        this.fileType = fileTypeName;
+      if((fileEle && event.dataTransfer.files[0].type == "text/csv") ||  (fileEle && event.dataTransfer.files[0].type=="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")) {
+        this.fileType.push(fileTypeName);
         fileEle.innerHTML = event.dataTransfer.files[0].name;
       }      
     }

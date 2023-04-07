@@ -173,7 +173,7 @@ body {
 }
 
 .upload_container {
-  width: 50px;
+  width: 40px;
   height: 50px;
 }
 
@@ -257,7 +257,7 @@ body {
 }
 
 .icon_container {
-  width: 150px;
+  width: 100px;
 }
 
 #file_name {
